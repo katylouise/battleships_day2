@@ -15,24 +15,28 @@ class Grid
     @array = Array.new(@size, :w).map{ |row| Array.new(@size, :w) }
   end
 
-  def place(ship, x, y, direction)
-    n = ship.size
-    if direction == :v
-      add_vertical(x, y, n)
-    elsif direction == :h
-      add_horizontal(x, y, n)
-    else
-      "Enter :v for vertical or :h for horizontal."
+  def place(ship, x_coordinate, y_coordinate, direction=:horizontal)
+    "Enter :v for vertical or :h for horizontal." unless [:horizontal, :vertical].include? direction
+     check_coordinates(ship, x_coordinate, y_coordinate, direction)
+    self.send("add_#{direction}", x_coordinate, y_coordinate, ship.size)
+  end
+
+  def add_horizontal(x_coordinate, y_coordinate, ship_size)
+    ship_size.times{ @array[y_coordinate][x_coordinate] = :s; x_coordinate += 1 }
+  end
+
+  def add_vertical(x_coordinate, y_coordinate, ship_size)
+    ship_size.times{ @array[y_coordinate][x_coordinate] = :s; y_coordinate += 1 }
+  end
+
+  def check_coordinates(ship, x_coordinate, y_coordinate, direction)
+    if direction == :vertical
+      fail "Keep ship on the grid" unless ship.size + y_coordinate < @size
+    elsif direction == :horizontal
+      fail "Keep ship on the grid" unless ship.size + x_coordinate < @size
     end
   end
 
-  def add_horizontal(x, y, n)
-    n.times{ @array[y][x] = :s; x += 1 }
-  end
-
-  def add_vertical(x, y, n)
-    n.times{ @array[y][x] = :s; y += 1 }
-  end
   # def defaults
   #   {
   #     size: DEFAULT_SIZE

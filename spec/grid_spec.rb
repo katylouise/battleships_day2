@@ -30,7 +30,11 @@ describe Grid do
   end
 
   it 'can add ships of different directions' do
-    subject.place(ship, 2, 3, :v)
+    subject.place(ship, 2, 3, :vertical)
     expect(subject.array[5][2]).to eq(:s)
+  end
+
+  it 'should not place ship outside the grid' do
+    expect{subject.place(ship, 8, 8, :horizontal)}.to raise_error "Keep ship on the grid"
   end
 end
