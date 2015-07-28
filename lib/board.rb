@@ -1,5 +1,5 @@
 class Board
-  def place(ship)
+  def place(ship, x, y)
     @ship = ship
   end
 end
