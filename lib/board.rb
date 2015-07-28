@@ -1,5 +1,10 @@
 class Board
+  def initialize(grid)
+    @grid = grid
+  end
+
   def place(ship, x, y)
-    @ship = ship
+    grid.add(x, y)
+    #@grid[y][x] = :s
   end
 end
