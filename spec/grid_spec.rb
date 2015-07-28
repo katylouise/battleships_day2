@@ -8,4 +8,6 @@ describe Grid do
   it 'has a default size' do
     expect(subject.size).to eq(Grid::DEFAULT_SIZE)
   end
+
+  
 end
