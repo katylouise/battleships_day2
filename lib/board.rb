@@ -1,4 +1,5 @@
 require_relative 'grid'
+require_relative 'ship'
 
 class Board
   def initialize(grid)
@@ -6,6 +7,6 @@ class Board
   end
 
   def place(ship, x, y)
-    grid.add(x, y)
+    @grid.add(x, y)
   end
 end
