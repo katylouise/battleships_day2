@@ -1,7 +1,7 @@
 require 'grid'
 
 describe Grid do
-  let(:ship) { double(:ship, { size: 3 })}
+  let(:ship) { double(:ship, { size: 3 , health: 3})}
   it 'has a method create_grid' do
     expect(subject).to respond_to(:create_grid)
   end
@@ -54,4 +54,6 @@ describe Grid do
     subject.fire(5, 5)
     expect(subject.array[5][5]).to eq(:m)
   end
+
+
 end

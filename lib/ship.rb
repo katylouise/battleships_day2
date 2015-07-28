@@ -1,3 +1,4 @@
+require_relative 'grid'
 class Ship
 
   attr_reader :size, :name

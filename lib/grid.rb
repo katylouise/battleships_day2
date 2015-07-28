@@ -52,7 +52,11 @@ class Grid
   end
 
   def fire(x_coordinate, y_coordinate)
-    @array[y_coordinate][x_coordinate] == :s ? @array[y_coordinate][x_coordinate] = :X : @array[y_coordinate][x_coordinate] = :m
+    if @array[y_coordinate][x_coordinate] == :s
+      @array[y_coordinate][x_coordinate] = :X
+    else
+      @array[y_coordinate][x_coordinate] = :m
+    end
   end
 
 
