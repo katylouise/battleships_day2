@@ -1,7 +1,7 @@
 require 'grid'
 
 describe Grid do
-
+  let(:ship) { double(:ship, { size: 3 })}
   it 'has a method create_grid' do
     expect(subject).to respond_to(:create_grid)
   end
@@ -23,5 +23,12 @@ describe Grid do
     subject.create_grid
     subject.add(0, 0)
     expect(subject.array[0][0]).to eq(:s)
+  end
+
+  it 'adds a ship of the given size' do
+    subject.create_grid
+    subject.add(2, 3)
+    n = ship.size - 1
+    expect(subject.array[3][4]).to eq(:s)
   end
 end
