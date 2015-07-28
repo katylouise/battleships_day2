@@ -37,4 +37,9 @@ describe Grid do
   it 'should not place ship outside the grid' do
     expect{subject.place(ship, 8, 8, :horizontal)}.to raise_error "Keep ship on the grid"
   end
+
+  it 'should not allow ships to overlap' do
+    subject.place(ship, 0, 0)
+    expect{subject.place(ship, 0, 0)}.to raise_error "There is already a ship there!"
+  end
 end

@@ -21,8 +21,16 @@ class Grid
     self.send("add_#{direction}", x_coordinate, y_coordinate, ship.size)
   end
 
+  # def add_horizontal(x_coordinate, y_coordinate, ship_size)
+  #   ship_size.times{ @array[y_coordinate][x_coordinate] = :s; x_coordinate += 1 }
+  # end
+
   def add_horizontal(x_coordinate, y_coordinate, ship_size)
-    ship_size.times{ @array[y_coordinate][x_coordinate] = :s; x_coordinate += 1 }
+    ship_size.times do
+      check_for_overlapping_ships(x_coordinate, y_coordinate)
+      @array[y_coordinate][x_coordinate] = :s
+      x_coordinate += 1
+    end
   end
 
   def add_vertical(x_coordinate, y_coordinate, ship_size)
@@ -37,11 +45,19 @@ class Grid
     end
   end
 
+  def check_for_overlapping_ships(x_coordinate, y_coordinate)
+    # :s = 'ship'
+    # :w = 'water'
+    fail "There is already a ship there!" if @array[y_coordinate][x_coordinate] == :s
+  end
+
   # def defaults
   #   {
   #     size: DEFAULT_SIZE
   #   }
   # end
 end
+
+
 
 #Refactor initialize to take hash and use defaults hash.
