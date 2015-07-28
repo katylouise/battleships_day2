@@ -13,7 +13,10 @@ class Grid
     @array = Array.new(@size, :w).map{ |row| Array.new(@size, :w) }
   end
 
-  def add(x, y)
-    @array[y][x] = :s
+  def add(x, y, n)
+    n.times do
+      @array[y][x] = :s
+      x += 1
+    end
   end
 end

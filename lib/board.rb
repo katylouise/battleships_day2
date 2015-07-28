@@ -8,9 +8,6 @@ class Board
 
   def place(ship, x, y)
     n = ship.size
-    n.times do
-      @grid.add(y, x)
-      x += 1
-    end
+    @grid.add(x, y, n)
   end
 end

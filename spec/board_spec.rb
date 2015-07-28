@@ -13,4 +13,5 @@ describe Board do
   it "has a method place" do
     expect(board).to respond_to(:place).with(3).argument
   end
+  
 end
