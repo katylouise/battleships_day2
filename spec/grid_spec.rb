@@ -20,14 +20,17 @@ describe Grid do
   end
 
   it 'adds a ship to the grid' do
-    subject.create_grid
-    subject.add(0, 0, 1)
+    subject.add_horizontal(0, 0, 1)
     expect(subject.array[0][0]).to eq(:s)
   end
 
   it 'adds a ship of the given size' do
-    subject.create_grid
-    subject.add(2, 3, 3)
+    subject.add_horizontal(2, 3, 3)
     expect(subject.array[3][4]).to eq(:s)
+  end
+
+  it 'can add ships of different directions' do
+    subject.place(ship, 2, 3, :v)
+    expect(subject.array[5][2]).to eq(:s)
   end
 end
