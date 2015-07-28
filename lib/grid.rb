@@ -21,10 +21,6 @@ class Grid
     self.send("add_#{direction}", x_coordinate, y_coordinate, ship.size)
   end
 
-  # def add_horizontal(x_coordinate, y_coordinate, ship_size)
-  #   ship_size.times{ @array[y_coordinate][x_coordinate] = :s; x_coordinate += 1 }
-  # end
-
   def add_horizontal(x_coordinate, y_coordinate, ship_size)
     ship_size.times do
       check_for_overlapping_ships(x_coordinate, y_coordinate)
@@ -34,7 +30,11 @@ class Grid
   end
 
   def add_vertical(x_coordinate, y_coordinate, ship_size)
-    ship_size.times{ @array[y_coordinate][x_coordinate] = :s; y_coordinate += 1 }
+    ship_size.times do
+      check_for_overlapping_ships(x_coordinate, y_coordinate)
+      @array[y_coordinate][x_coordinate] = :s
+      y_coordinate += 1
+    end
   end
 
   def check_coordinates(ship, x_coordinate, y_coordinate, direction)
@@ -50,6 +50,11 @@ class Grid
     # :w = 'water'
     fail "There is already a ship there!" if @array[y_coordinate][x_coordinate] == :s
   end
+
+  def fire(x_coordinate, y_coordinate)
+    @array[y_coordinate][x_coordinate] == :s ? @array[y_coordinate][x_coordinate] = :X : @array[y_coordinate][x_coordinate] = :m
+  end
+
 
   # def defaults
   #   {

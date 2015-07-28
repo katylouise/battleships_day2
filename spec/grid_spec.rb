@@ -42,4 +42,16 @@ describe Grid do
     subject.place(ship, 0, 0)
     expect{subject.place(ship, 0, 0)}.to raise_error "There is already a ship there!"
   end
+
+  it 'has a method fire which can hit ships' do
+    subject.place(ship, 0, 0)
+    subject.fire(0, 0)
+    expect(subject.array[0][0]).to eq(:X)
+  end
+
+  it 'has a method fire which can miss ships' do
+    subject.place(ship, 0, 0)
+    subject.fire(5, 5)
+    expect(subject.array[5][5]).to eq(:m)
+  end
 end
