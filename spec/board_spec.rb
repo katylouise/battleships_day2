@@ -1,5 +1,6 @@
 require 'board'
 
+
 describe Board do
 
   let(:ship) { double(:ship) }
